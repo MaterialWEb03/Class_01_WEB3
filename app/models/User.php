@@ -1,20 +1,20 @@
-		<?php
-			class User{
-				private $db;
-				
-				//create database object
-				public function __construct(){
-					$this->db = new Database;
-				}
-				
-				//retrive all user data
-				public function getUsers(){
-					$this->db->query('select * from usuarios');
-					$regis = $this->db->resultSet();
-					return $regis;
-				}
+<?php
+	class User{
+		private $db;
+		
+		//create database object
+		public function __construct(){
+			$this->db = new Database;
+		}
+		
+		//retrive all user data
+		public function getUsers(){
+			$this->db->query('select * from usuarios');
+			$regis = $this->db->resultSet();
+			return $regis;
+		}
 
-                	//retrieve an user data, loging function
+        	//retrieve an user data, loging function
         public function login($data){
             //create retrieve sentence
             $this->db->query('select * from usuarios where nombre = :nomb');
@@ -53,5 +53,5 @@
             }                            
         }// end register user function
 
-			}
-		?>
+	}
+?>

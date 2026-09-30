@@ -25,13 +25,9 @@
                     Acerca de..
                 </a>
             </li>
-
             <li class="nav-item">
-                <a class="nav-link" href="#">
-                    ???
-                </a>
+               		<a href="<?php echo urlRoot; ?>/categories/index" class="px-3 py-2 rounded-md text-sm font-medium text-slate-700 hover:text-indigo-600 hover:bg-slate-100 transition-colors">Categorías</a>
             </li>
-
             <li class="nav-item">
                 <?php
                 if (isLoggedIn()) {

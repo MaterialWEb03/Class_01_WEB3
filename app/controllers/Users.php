@@ -1,5 +1,8 @@
-	<?php
+<?php
 			class Users extends Controller {
+			
+				private $userModel;
+				
 				public function __construct(){
 					$this->userModel = $this->model('User');
 				}
@@ -15,7 +18,7 @@
 					
 					//create [POST] proccess 
 					if($_SERVER['REQUEST_METHOD']== 'POST'){
-						// Sanitize each each web form variable 
+						// Sanitize each web form variable 
 						$txtUsua   = filter_input(INPUT_POST, 'txtUsua', FILTER_DEFAULT);
 						$txtContra = filter_input(INPUT_POST, 'txtContra', FILTER_DEFAULT);
 						
@@ -84,7 +87,7 @@
 						
 						//crete validate patterns						
 						$validaNombre = '/^[a-zA-ZáéíóúÁÉÍÓÚñÑ\s]*$/';
-						$validaContra = '/^[a-zA-Z0-9]*$/';
+						$validaContra = '/^(?=.*\d)(?=.*[a-z])(?=.*[A-Z]).{6,}$/';
 						
 						//validate username data
 						if(empty($data['usuario'])){
@@ -99,7 +102,7 @@
 						}elseif(strlen($data['contra']) < 8){
 							$data['passError'] = 'La contraseña debe tener al menos 8 caracteres';
 						}elseif(!preg_match($validaContra, $data['contra'])){
-							$data['passError'] = 'La contraseña debe tener al menos un número';
+							$data['passError'] = 'La contraseña debe incluir al menos una mayúscula, una minúscula, un número y un carácter especial.';
 						}
 						
 						//validate confirm password data 
@@ -108,7 +111,7 @@
 						}elseif(strlen($data['recontra']) < 8){
 							$data['passError2'] = 'La contraseña de confirmacion debe tener al menos 8 caracteres';
 						}elseif(!preg_match($validaContra, $data['recontra'])){
-							$data['passError2'] = 'La contraseña de confirmacion debe tener al menos un número';
+							$data['passError2'] = 'La contraseña debe incluir al menos una mayúscula, una minúscula, un número y un carácter especial.';
 						}elseif($data['contra'] != $data['recontra']){
 							$data['passError2'] = 'Las contraseñas no coinciden, favor confirmar sus datos';
 						}
@@ -136,14 +139,14 @@
 					$_SESSION['usuario'] = $user->nombre;
 					header('location: ' . urlRoot . '/pages/index');
 				}
+				public function logout(){
+            		unset($_SESSION['autenticado']);
+            		unset($_SESSION['usuario']);
+            		header('location: ' . urlRoot . '/pages/index');
+        }
+
+
 				 
-                	public function logout(){
-                     unset($_SESSION['autenticado']);
-                     unset($_SESSION['usuario']);
-                     header('location: ' . urlRoot . '/pages/index');
-                }
-
-
 			}
 
 		?>
