@@ -1,7 +1,7 @@
 <?php
 	//database params in constant
-	define('db_Servidor' , '127.0.0.1');
-	define('db_Basedato' , 'prueba');
+	define('db_Servidor' , 'localhost');
+	define('db_Basedato' , 'NorthWind');
 	define('db_Usuario'  , 'root');
 	define('db_Contra'   , 'Utn123**');
 	

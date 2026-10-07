@@ -1,44 +1,52 @@
-<nav class="navbar navbar-expand-lg letra_menu navbar-light bg-light">
+<nav class="bg-white border-b border-slate-200 shadow-sm rounded-xl mb-6">
+    <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+        <div class="flex justify-between h-16 items-center">
 
-    <button 
-        class="navbar-toggler" 
-        type="button" 
-        data-toggle="collapse" 
-        data-target="#navbarNavDropdown" 
-        aria-controls="navbarNavDropdown" 
-        aria-expanded="false" 
-        aria-label="Toggle navigation">
-        <span class="navbar-toggler-icon"></span>
-    </button>
+            <div class="flex items-center space-x-3">
+                <div class="bg-indigo-600 text-white p-2 rounded-lg font-bold text-lg leading-none">
+                    <i class="fa-solid fa-code"></i>
+                </div>
 
-    <div class="collapse navbar-collapse" id="navbarNavDropdown">
-        <ul class="navbar-nav">
+                <span class="font-bold text-slate-800 text-lg tracking-tight">
+                    <?php echo siteName; ?>
+                </span>
+            </div>
 
-            <li class="nav-item">
-                <a class="nav-link" href="<?php echo urlRoot; ?>/pages/index">
+            <div class="flex items-center space-x-2">
+
+                <a href="<?php echo urlRoot; ?>/pages/index"
+                   class="px-3 py-2 rounded-md text-sm font-medium text-slate-700 hover:text-indigo-600 hover:bg-slate-100 transition-colors">
                     Inicio
                 </a>
-            </li>
 
-            <li class="nav-item">
-                <a class="nav-link" href="<?php echo urlRoot; ?>/pages/about">
+                <a href="<?php echo urlRoot; ?>/pages/about"
+                   class="px-3 py-2 rounded-md text-sm font-medium text-slate-700 hover:text-indigo-600 hover:bg-slate-100 transition-colors">
                     Acerca de..
                 </a>
-            </li>
-            <li class="nav-item">
-               		<a href="<?php echo urlRoot; ?>/categories/index" class="px-3 py-2 rounded-md text-sm font-medium text-slate-700 hover:text-indigo-600 hover:bg-slate-100 transition-colors">Categorías</a>
-            </li>
-            <li class="nav-item">
-                <?php
-                if (isLoggedIn()) {
-                    echo '<a class="nav-link" href="' . urlRoot . '/users/logout">Salir</a>';
-                } else {
-                    echo '<a class="nav-link" href="' . urlRoot . '/users/login">Ingresar</a>';
-                }
-                ?>
-            </li>
 
-        </ul>
+                <!-- Paso 46 de la guía -->
+                <a href="<?php echo urlRoot; ?>/categories/index"
+                   class="px-3 py-2 rounded-md text-sm font-medium text-slate-700 hover:text-indigo-600 hover:bg-slate-100 transition-colors">
+                    Categorías
+                </a>
+
+                <?php if(isLoggedIn()): ?>
+
+                    <a href="<?php echo urlRoot; ?>/users/logout"
+                       class="ml-2 px-4 py-2 rounded-lg text-sm font-medium text-white bg-rose-600 hover:bg-rose-700 transition-colors shadow-sm">
+                        Salir
+                    </a>
+
+                <?php else: ?>
+
+                    <a href="<?php echo urlRoot; ?>/users/login"
+                       class="ml-2 px-4 py-2 rounded-lg text-sm font-medium text-white bg-indigo-600 hover:bg-indigo-700 transition-colors shadow-sm">
+                        Ingresar
+                    </a>
+
+                <?php endif; ?>
+
+            </div>
+        </div>
     </div>
-
 </nav>

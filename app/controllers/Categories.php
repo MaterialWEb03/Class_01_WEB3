@@ -7,9 +7,9 @@
 
 				public function __construct() {
 					// Redirigir a login si no está autenticado
-					if (!isset($_SESSION['autenticado']) || $_SESSION['autenticado'] !== 'SI') {
+					if (!isLoggedIn()) {
 						header('Location: ' . urlRoot . '/users/login');
-						exit();
+
 					}
 					$this->categoryModel = $this->model('Category');
 				}
